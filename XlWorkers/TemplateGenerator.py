@@ -1,29 +1,10 @@
 # -*- coding: utf-8 -*-
 
-__author__ = 'Vitor Chen'
-
-from enum import Enum
 from openpyxl import Workbook
 
+from XlWorkers.Config import *
 
-# language list
-class LangCode(Enum):
-    EN = 'en'
-    DE = 'de'
-    ES = 'es'
-    FR = 'fr'
-    IN = 'in'
-    IT = 'it'
-    JA = 'ja'
-    KO = 'ko'
-    PT = 'pt'
-    RU = 'ru'
-    TH = 'th'
-    TR = 'tr'
-    VI = 'vi'
-    ZH = 'zh'
-    ZH_rHK = 'zh-rHK'
-    ZH_rTW = 'zh-rTW'
+__author__ = 'Vitor Chen'
 
 
 class TemplateGenerator(object):
@@ -32,10 +13,8 @@ class TemplateGenerator(object):
         self.str_descs = []
         self.str_keys = []
         self.column_titles = []
-        self.column_titles.append('String res key')
-        self.column_titles.append('Description')
-        for lang in LangCode:
-            self.column_titles.append(lang.value)
+        for col_info in HEADER_COL_LIST:
+            self.column_titles.append(col_info.display_name)
 
     def append_res_keys(self, keys):
         if self.__verify_input_array(keys):
