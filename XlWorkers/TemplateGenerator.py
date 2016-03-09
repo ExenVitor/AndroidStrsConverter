@@ -14,7 +14,7 @@ class TemplateGenerator(object):
         self._column_titles = []
         self._trans_entities = []
         self._lang_code = LangCode.EN.code
-        for col_info in HEADER_COL_LIST:
+        for col_info in Config.HEADER_COL_LIST:
             self._column_titles.append(col_info.display_name)
 
     def append_trans_entities(self, entities):
@@ -36,7 +36,7 @@ class TemplateGenerator(object):
 
     def _write_res_trans_entities(self, ws, lang_code):
         start_row = 2
-        lang_cell_pos = LANG_COL_CODE_MAP.get(lang_code)
+        lang_cell_pos = Config.LANG_COL_CODE_MAP.get(lang_code)
         lang_col_pos = lang_cell_pos.col
 
         entities_count = len(self._trans_entities)
@@ -46,14 +46,14 @@ class TemplateGenerator(object):
                 trans_entity = self._trans_entities[i]
                 current_row = start_row + i
 
-                key_cell = ws.cell(row=current_row, column=KEY_COL_POS)
+                key_cell = ws.cell(row=current_row, column=Config.KEY_COL_POS)
                 key_cell.value = trans_entity.key
 
                 trans_cell = ws.cell(row=current_row, column=lang_col_pos)
                 trans_cell.value = trans_entity.trans_str
 
                 if trans_entity.desc is not None:
-                    desc_cell = ws.cell(row=current_row, column=DESC_COL_POS)
+                    desc_cell = ws.cell(row=current_row, column=Config.DESC_COL_POS)
                     desc_cell.value = trans_entity.desc
 
     @staticmethod

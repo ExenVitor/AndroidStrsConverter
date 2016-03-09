@@ -32,25 +32,26 @@ class LangCode(Enum):
         self.title = title
 
 
-KEY_COL_POS = 1
-DESC_COL_POS = 2
+class Config(object):
+    KEY_COL_POS = 1
+    DESC_COL_POS = 2
 
-HEADER_COL_LIST = [HeaderColInfo('String res key'),
-                   HeaderColInfo('Description'), ]
-for lang_code in LangCode:
-    HEADER_COL_LIST.append(LangColInfo(lang_code.title, lang_code.code))
+    HEADER_COL_LIST = [HeaderColInfo('String res key'),
+                       HeaderColInfo('Description'), ]
+    for lang_code in LangCode:
+        HEADER_COL_LIST.append(LangColInfo(lang_code.title, lang_code.code))
 
-LANG_COL_CODE_MAP = {}
-LANG_COL_POS_MAP = {}
+    LANG_COL_CODE_MAP = {}
+    LANG_COL_POS_MAP = {}
 
-for i in range(1, len(HEADER_COL_LIST) + 1):
-    headerCol = HEADER_COL_LIST[i - 1]
-    if isinstance(headerCol, LangColInfo):
-        cellPos = CellPos(1, i)
-        LANG_COL_CODE_MAP[headerCol.code] = cellPos
-        LANG_COL_POS_MAP[cellPos.col] = headerCol
+    for i in range(1, len(HEADER_COL_LIST) + 1):
+        headerCol = HEADER_COL_LIST[i - 1]
+        if isinstance(headerCol, LangColInfo):
+            cellPos = CellPos(1, i)
+            LANG_COL_CODE_MAP[headerCol.code] = cellPos
+            LANG_COL_POS_MAP[cellPos.col] = headerCol
 
-if DEBUG:
-    print(HEADER_COL_LIST)
-    print(LANG_COL_CODE_MAP)
-    print(LANG_COL_POS_MAP)
+    if DEBUG:
+        print(HEADER_COL_LIST)
+        print(LANG_COL_CODE_MAP)
+        print(LANG_COL_POS_MAP)
