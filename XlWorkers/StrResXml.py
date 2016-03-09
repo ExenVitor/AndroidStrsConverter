@@ -13,6 +13,7 @@ class StrResXml(object):
 
     def __init__(self, filename):
         super().__init__()
+        self._filename = filename
         self._str_ele_map = {}
         self._xml_tree = ET.parse(filename)
         root_resource = self._xml_tree.getroot()
@@ -25,7 +26,7 @@ class StrResXml(object):
     def get_res_value(self, res_name):
         result = ''
         str_node = self.get_res_node(res_name)
-        if str_node:
+        if str_node is not None:
             result = str_node.text
         return result
 
@@ -42,3 +43,14 @@ class StrResXml(object):
                 trans_entity = TransEntity(key, trans_str)
                 entities.append(trans_entity)
         return entities
+
+    def update_res_node(self, res_name, trans_str):
+        str_node = self.get_res_node(res_name)
+        if str_node is not None:
+            str_node.text = trans_str
+
+    def save(self, file_or_filename=None):
+        if not file_or_filename:
+            file_or_filename = self._filename
+        self._xml_tree.write(file_or_filename, encoding="utf-8", xml_declaration=True)
+
