@@ -13,7 +13,6 @@ class TemplateGenerator(object):
         super().__init__()
         self._column_titles = []
         self._trans_entities = []
-        self._lang_code = LangCode.EN.code
         for col_info in Config.HEADER_COL_LIST:
             self._column_titles.append(col_info.display_name)
 
@@ -23,12 +22,12 @@ class TemplateGenerator(object):
                 if isinstance(entity, TransEntity):
                     self._trans_entities.append(entity)
 
-    def gen_template(self, output_path=None):
+    def gen_template(self, output_path=None, lang_code=LangCode.EN.code):
         wb = Workbook()
         ws = wb.active
         ws.append(self._column_titles)
 
-        self._write_res_trans_entities(ws, self._lang_code)
+        self._write_res_trans_entities(ws, lang_code)
 
         if output_path is None:
             output_path = 'template.xlsx'

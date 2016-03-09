@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="msgbox_mark_all_as_read">Mark all as read</string>
+
+    <string name="msgbox_timeline_second">%1$d second ago</string>
+
+    <string name="msgbox_timeline_seconds">%1$d seconds ago</string>
+
+    <string name="msgbox_timeline_minute">%1$d minute ago</string>
+
+    <string name="msgbox_timeline_minutes">%1$d minutes ago</string>
+
+    <string name="msgbox_timeline_hour">%1$d hour ago</string>
+
+    <string name="msgbox_timeline_hours">%1$d hours ago</string>
+
+    <string name="msgbox_timeline_day">%1$d day ago</string>
+
+    <string name="msgbox_timeline_days">%1$d days ago</string>
+
+    <string name="msgbox_no_msg_text">No Message</string>
+
+    <string name="msg_detail_not_found">This message is no longer existing.</string>
+
+    <string name="msg_share_personal_pic_deleted">What have you done? You bad boy!(Photo Deleted)</string>
+
+    <string name="msg_share_personal_hot">My entry is now HOT!</string>
+
+    <string name="msg_share_personal_bonus_winner">My entry has been purchased!</string>
+
+    <string name="msg_share_personal_inspire_hot">My entry is in both HOT and Inspiration!</string>
+
+    <string name="msg_share_personal_no_bonus_winner">My entry has been selected by our Editors!</string>
+
+    <string name="msg_share_public_content">I\'ve received a message!</string>
+
+</resources>

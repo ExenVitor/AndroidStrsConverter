@@ -9,3 +9,8 @@ class TransEntity(object):
         self.key = key
         self.trans_str = trans_str
         self.desc = desc
+
+    def __str__(self, *args, **kwargs):
+        return 'Key = ' + str(self.key) +\
+               ' String = ' + str(self.trans_str) +\
+               " Description = " + str(self.desc)
