@@ -6,7 +6,7 @@ __author__ = 'Vitor Chen'
 
 class CellPos(object):
     def __init__(self, row=0, col=0):
-        super.__init__()
+        super().__init__()
         self.row = row
         self.col = col
 

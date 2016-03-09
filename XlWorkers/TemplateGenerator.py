@@ -3,6 +3,7 @@
 from openpyxl import Workbook
 
 from XlWorkers.Config import *
+from XlWorkers.Entities import TransEntity
 
 __author__ = 'Vitor Chen'
 
@@ -10,51 +11,50 @@ __author__ = 'Vitor Chen'
 class TemplateGenerator(object):
     def __init__(self):
         super().__init__()
-        self.str_descs = []
-        self.str_keys = []
-        self.column_titles = []
+        self._column_titles = []
+        self._trans_entities = []
+        self._lang_code = LangCode.EN.code
         for col_info in HEADER_COL_LIST:
-            self.column_titles.append(col_info.display_name)
+            self._column_titles.append(col_info.display_name)
 
-    def append_res_keys(self, keys):
-        if self.__verify_input_array(keys):
-            self.str_keys.extend(keys)
-
-    def append_res_descs(self, descriptions):
-        if self.__verify_input_array(descriptions):
-            self.str_descs.extend(descriptions)
+    def append_trans_entities(self, entities):
+        if self.__verify_input_array(entities):
+            for entity in entities:
+                if isinstance(entity, TransEntity):
+                    self._trans_entities.append(entity)
 
     def gen_template(self, output_path=None):
         wb = Workbook()
         ws = wb.active
-        ws.append(self.column_titles)
+        ws.append(self._column_titles)
 
-        self._write_res_keys(ws)
-        self._write_res_descs(ws)
+        self._write_res_trans_entities(ws, self._lang_code)
 
         if output_path is None:
             output_path = 'template.xlsx'
         wb.save(output_path)
 
-    def _write_res_keys(self, ws):
-        key_start_row = 2
-        key_col = 1
-        keys_count = len(self.str_keys)
+    def _write_res_trans_entities(self, ws, lang_code):
+        start_row = 2
+        lang_cell_pos = LANG_COL_CODE_MAP.get(lang_code)
+        lang_col_pos = lang_cell_pos.col
 
-        if keys_count > 0:
-            for i in range(keys_count):
-                cell = ws.cell(row=key_start_row + i, column=key_col)
-                cell.value = self.str_keys[i]
+        entities_count = len(self._trans_entities)
 
-    def _write_res_descs(self, ws):
-        desc_start_row = 2
-        desc_col = 2
-        descs_count = len(self.str_descs)
+        if entities_count > 0:
+            for i in range(entities_count):
+                trans_entity = self._trans_entities[i]
+                current_row = start_row + i
 
-        if descs_count > 0:
-            for i in range(descs_count):
-                cell = ws.cell(row=desc_start_row + i, column=desc_col)
-                cell.value = self.str_descs[i]
+                key_cell = ws.cell(row=current_row, column=KEY_COL_POS)
+                key_cell.value = trans_entity.key
+
+                trans_cell = ws.cell(row=current_row, column=lang_col_pos)
+                trans_cell.value = trans_entity.trans_str
+
+                if trans_entity.desc is not None:
+                    desc_cell = ws.cell(row=current_row, column=DESC_COL_POS)
+                    desc_cell.value = trans_entity.desc
 
     @staticmethod
     def __verify_input_array(input_array):

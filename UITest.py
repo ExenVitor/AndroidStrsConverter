@@ -28,8 +28,13 @@ if __name__ == '__main__':
     from XlWorkers import TemplateGenerator
 
     generator = TemplateGenerator.TemplateGenerator()
-    str_keys = ('string_res_1', 'string_res_2', 'string_res_3')
-    generator.append_res_keys(str_keys)
-    str_descs = ('desc_1', 'desc_2', 'desc_3')
-    generator.append_res_descs(str_descs)
+
+    from XlWorkers.Entities import TransEntity
+    trans_entities = []
+    for i in range(10):
+        res_key = 'string_res_{0}'.format(i)
+        trans_str = 'Hello_res_{0}'.format(i)
+        trans_entities.append(TransEntity(res_key, trans_str))
+    generator.append_trans_entities(trans_entities)
+
     generator.gen_template()
