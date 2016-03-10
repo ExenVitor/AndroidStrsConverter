@@ -11,21 +11,20 @@ DEBUG = True
 # language list
 class LangCode(Enum):
     EN = ('en', 'English')
-    DE = ('de', '德语')
+    ZH = ('zh', '简中')
+    ZH_rHK = ('zh-r', '繁體')
+    VI = ('vi', '越南语')
+    IN = ('in', '印尼语')
+    TR = ('tr', '土耳其语')
+    TH = ('th', '泰语')
     ES = ('es', '西班牙语')
     FR = ('fr', '法语')
-    IN = ('in', '印尼语')
-    IT = ('it', '意大利语')
+    DE = ('de', '德语')
     JA = ('ja', '日语')
-    KO = ('ko', '韩语')
     PT = ('pt', '葡萄牙语')
+    IT = ('it', '意大利语')
     RU = ('ru', '俄语')
-    TH = ('th', '泰语')
-    TR = ('tr', '土耳其语')
-    VI = ('vi', '越南语')
-    ZH = ('zh', '简中')
-    ZH_rHK = ('zh-rHK', '香港繁中')
-    ZH_rTW = ('zh-rTW', '台湾繁中')
+    KO = ('ko', '韩语')
 
     def __init__(self, code, title):
         self.code = code
