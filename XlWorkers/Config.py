@@ -35,6 +35,9 @@ class LangCode(Enum):
 class Config(object):
     KEY_COL_POS = 1
     DESC_COL_POS = 2
+    LANG_COL_START = 3
+
+    CONTENT_ROW_START = 2
 
     HEADER_COL_LIST = [HeaderColInfo('String res key'),
                        HeaderColInfo('Description'), ]

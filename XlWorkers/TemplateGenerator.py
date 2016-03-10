@@ -34,7 +34,7 @@ class TemplateGenerator(object):
         wb.save(output_path)
 
     def _write_res_trans_entities(self, ws, lang_code):
-        start_row = 2
+        start_row = Config.CONTENT_ROW_START
         lang_cell_pos = Config.LANG_COL_CODE_MAP.get(lang_code)
         lang_col_pos = lang_cell_pos.col
 
