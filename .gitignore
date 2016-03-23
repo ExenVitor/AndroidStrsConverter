@@ -85,3 +85,5 @@ celerybeat-schedule
 
 # Custom
 *.xlsx
+.svn/
+output/
