@@ -7,6 +7,13 @@ import XlWorkers.Utils as Utils
 from XlWorkers.Entities import TransEntity
 
 
+class CommentTreeBuilder(ET.TreeBuilder):
+    def comment(self, data):
+        self.start(ET.Comment, {})
+        self.data(data)
+        self.end(ET.Comment)
+
+
 class StrResXml(object):
     _STR_TAG = 'string'
     _NAME_ATTR = 'name'
@@ -15,7 +22,7 @@ class StrResXml(object):
         super().__init__()
         self._filename = filename
         self._str_ele_map = {}
-        self._xml_tree = ET.parse(filename)
+        self._xml_tree = ET.parse(filename, parser=ET.XMLParser(target=CommentTreeBuilder()))
         root_resource = self._xml_tree.getroot()
         for str_node in root_resource.findall(self._STR_TAG):
             node_attrib = str_node.attrib
@@ -53,4 +60,3 @@ class StrResXml(object):
         if not file_or_filename:
             file_or_filename = self._filename
         self._xml_tree.write(file_or_filename, encoding="utf-8", xml_declaration=True)
-
