@@ -8,12 +8,12 @@ __author__ = 'Vitor Chen'
 def main():
     generator = TemplateGenerator.TemplateGenerator()
 
-    str_res_xml = StrResXml('../en_strings.xml')
+    str_res_xml = StrResXml('../fotor_guide_strings.xml')
     trans_entities = str_res_xml.gen_trans_entities()
 
     generator.append_trans_entities(trans_entities)
 
-    generator.gen_template(output_path='../template.xlsx')
+    generator.gen_template(output_path='../guide.xlsx')
 
 
 if __name__ == '__main__':
