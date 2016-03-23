@@ -71,21 +71,29 @@ def _parse_options():
     return config
 
 
-def main():
-    config = _parse_options()
-
+def gen_template(src_path, template_path, lang_code):
     generator = TemplateGenerator()
 
-    str_res_xml = StrResXml(config.get('SRC_XML'))
+    str_res_xml = StrResXml(src_path)
     trans_entities = str_res_xml.gen_trans_entities()
 
     generator.append_trans_entities(trans_entities)
 
-    template_path = config.get('TEMPLATE')
-
-    generator.gen_template(output_path=config.get('TEMPLATE'), lang_code=config.get('LANG_CODE'))
+    generator.gen_template(output_path=template_path, lang_code=lang_code)
 
     print('Generate success! Template file: ' + path.realpath(template_path))
+
+
+def main():
+    config = _parse_options()
+
+    src_path = config.get('SRC_XML')
+
+    template_path = config.get('TEMPLATE')
+
+    lang_code = config.get('LANG_CODE')
+
+    gen_template(src_path, template_path, lang_code)
 
 if __name__ == '__main__':
     main()
