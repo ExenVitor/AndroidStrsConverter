@@ -5,7 +5,7 @@ from XlWorkers.CellInfo import *
 
 __author__ = 'Vitor Chen'
 
-DEBUG = True
+DEBUG = False
 
 
 # language list
