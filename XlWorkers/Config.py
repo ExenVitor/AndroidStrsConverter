@@ -9,10 +9,10 @@ DEBUG = True
 
 
 # language list
-class LangCode(Enum):
-    EN = ('en', 'English')
+class Lang(Enum):
+    EN = ('en', 'English', ('', ))
     ZH = ('zh', '简中')
-    ZH_rHK = ('zh-r', '繁體')
+    ZH_rHK = ('zh_HANT', '繁體', ('zh-rHK', 'zh-rTW'))
     VI = ('vi', '越南语')
     IN = ('in', '印尼语')
     TR = ('tr', '土耳其语')
@@ -26,9 +26,16 @@ class LangCode(Enum):
     RU = ('ru', '俄语')
     KO = ('ko', '韩语')
 
-    def __init__(self, code, title):
+    def __init__(self, code, title, region_codes=None):
         self.code = code
         self.title = title
+        if region_codes is None:
+            region_codes = (code, )
+        self._region_codes = region_codes
+
+    def reverse_region_codes(self):
+        for region_code in self._region_codes:
+            yield region_code
 
 
 class Config(object):
@@ -40,7 +47,7 @@ class Config(object):
 
     HEADER_COL_LIST = [HeaderColInfo('String res key'),
                        HeaderColInfo('Description'), ]
-    for lang_code in LangCode:
+    for lang_code in Lang:
         HEADER_COL_LIST.append(LangColInfo(lang_code.title, lang_code.code))
 
     LANG_COL_CODE_MAP = {}

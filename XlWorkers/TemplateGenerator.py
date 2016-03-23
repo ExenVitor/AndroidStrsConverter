@@ -22,7 +22,7 @@ class TemplateGenerator(object):
                 if isinstance(entity, TransEntity):
                     self._trans_entities.append(entity)
 
-    def gen_template(self, output_path=None, lang_code=LangCode.EN.code):
+    def gen_template(self, output_path=None, lang_code=Lang.EN.code):
         wb = Workbook()
         ws = wb.active
         ws.append(self._column_titles)

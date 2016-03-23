@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--comment test 1-->
+
     <string name="msgbox_mark_all_as_read">Mark all as read</string>
 
     <string name="msgbox_timeline_second">%1$d second ago</string>
@@ -21,6 +23,8 @@
 
     <string name="msgbox_no_msg_text">No Message</string>
 
+    <!--comment test 2-->
+
     <string name="msg_detail_not_found">This message is no longer existing.</string>
 
     <string name="msg_share_personal_pic_deleted">What have you done? You bad boy!(Photo Deleted)</string>
@@ -34,5 +38,7 @@
     <string name="msg_share_personal_no_bonus_winner">My entry has been selected by our Editors!</string>
 
     <string name="msg_share_public_content">I\'ve received a message!</string>
+
+    <!--comment test 3-->
 
 </resources>
