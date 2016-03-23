@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-usage: asc_xml2temp [OPTION]...
+usage: asc_xml2temp [options]
 Convert Android string resource xml to a template xlsx file
 
 Convert options:
@@ -26,7 +26,7 @@ __author__ = 'Vitor Chen'
 
 def _print_help():
     print(__doc__)
-    sys.exit()
+    sys.exit(2)
 
 
 def _parse_options():
@@ -49,22 +49,19 @@ def _parse_options():
                 config['LANG_CODE'] = to_str(value)
     except getopt.GetoptError as e:
         print_err(e)
-        sys.exit(2)
+        _print_help()
 
     if not config:
         print_err('config not specified')
         _print_help()
-        sys.exit(2)
 
     if config.get('SRC_XML', None) is None:
         print_err('SRC_XML not specified')
         _print_help()
-        sys.exit(2)
 
     if config.get('TEMPLATE', None) is None:
         print_err('TEMPLATE not specified')
         _print_help()
-        sys.exit(2)
 
     config['LANG_CODE'] = to_str(config.get('LANG_CODE', Lang.EN.code))
 
