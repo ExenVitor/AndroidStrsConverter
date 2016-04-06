@@ -15,7 +15,8 @@ class StrResXml(object):
         super().__init__()
         self._filename = filename
         self._str_ele_map = {}
-        self._xml_tree = etree.parse(filename)
+        parser = etree.XMLParser(strip_cdata=False)
+        self._xml_tree = etree.parse(filename, parser=parser)
         root_resource = self._xml_tree.getroot()
         for str_node in root_resource.findall(self._STR_TAG):
             node_attrib = str_node.attrib
